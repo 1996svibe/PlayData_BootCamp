@@ -11,15 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
+    public static User me;
     public void insert(User user){
         Connection conn = new JdbcConnection().getJdbc();
         String sql = "insert into users(username, password, name) " +
-                "values(?, ?, ?)";
+                "values(?, ? ,?)";
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1,user.getUsername());
-            pst.setString(2,user.getPassword());
-            pst.setString(3,user.getName());
+            pst.setString(1, user.getUsername());
+            pst.setString(2, user.getPassword());
+            pst.setString(3, user.getName());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -36,15 +37,20 @@ public class UserDao {
             pst.setString(1, id);
             pst.setString(2, password);
             ResultSet resultSet = pst.executeQuery();
-
             while (resultSet.next()){
                 users.add(makeUser(resultSet));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return users.size() != 0;
+        if(users.size() != 0){
+            me = users.get(0);
+            return true;
+        }
+        return false;
     }
+
+
     private User makeUser(ResultSet resultSet){
         Integer id;
         String password, username, name, createAt;
@@ -75,5 +81,4 @@ public class UserDao {
         }
         return new User(id,username,password,name,createAt);
     }
-
 }
