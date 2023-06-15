@@ -1,6 +1,7 @@
 package com.playdata.todos.dao;
 
 import com.playdata.todos.config.JdbcConnection;
+import com.playdata.todos.config.LogOutThread;
 import com.playdata.todos.dto.User;
 
 import java.sql.Connection;
@@ -45,6 +46,7 @@ public class UserDao {
         }
         if(users.size() != 0){
             me = users.get(0);
+            new LogOutThread().start();
             return true;
         }
         return false;
@@ -75,7 +77,7 @@ public class UserDao {
             name = null;
         }
         try {
-            createAt = resultSet.getString("createAt");
+            createAt = resultSet.getString("create_at");
         }catch (SQLException e) {
             createAt = null;
         }
