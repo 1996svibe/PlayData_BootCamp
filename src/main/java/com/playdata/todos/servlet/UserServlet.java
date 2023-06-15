@@ -28,7 +28,8 @@ public class UserServlet extends HttpServlet {
         User user = new User("id");
         UserDao userDao = new UserDao();
         userDao.insert(user);
-        resp.sendRedirect("/user");
+        resp.sendRedirect("/login");
+        resp.setStatus(201);
 //        super.doPost(req, resp);
     }
 }
