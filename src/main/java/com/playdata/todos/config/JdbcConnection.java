@@ -6,16 +6,16 @@ import java.sql.SQLException;
 
 public class JdbcConnection {
 
-    private final String url = "jdbc:mysql://localhost:3306/test2" +
+    private  final String url = "jdbc:mysql://localhost:3306/test2" +
             "?serverTimezone=Asia/Seoul&characterEncoding=UTF-8";
-    private final String root = "root";
-    private final String password = "1q2w3e4r!!";
+    private  final String username = "root";
+    private  final String password = "1q2w3e4r!!";
 
-    public Connection getJdbc()  {
+    public  Connection getJdbc()  {
         Connection conn;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, root, password);
+            conn = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException e){
             throw new RuntimeException(e);
         }
