@@ -12,20 +12,24 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        req.getRequestDispatcher("views/main.html").forward(req, resp);
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
-        writer.println("<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <title>main</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <h1>"+ UserDao.me.getName() +"님 환영합니다.</h1>\n" +
-                "    <img src=\"/img/ffsf.png\">\n" +
-                "</body>\n" +
-                "</html>");
-        writer.close();
-
+        if(UserDao.me != null){
+            resp.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = resp.getWriter();
+            writer.println("<!DOCTYPE html>\n" +
+                    "<html lang=\"en\">\n" +
+                    "<head>\n" +
+                    "    <meta charset=\"UTF-8\">\n" +
+                    "    <title>main</title>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "    <h1>" + UserDao.me.getName() + "님 환영합니다.</h1>\n" +
+                    "    <h1>" + UserDao.me.getName() + "님 가입을 감사드립니다.</h1>\n" +
+                    "    <img src=\"/img/ffsf.png\">\n" +
+                    "</body>\n" +
+                    "</html>");
+            writer.close();
+        }else{
+            resp.sendRedirect("/login");
+        }
     }
 }
