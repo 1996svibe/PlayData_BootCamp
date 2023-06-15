@@ -4,15 +4,16 @@ body {
 
 .container {
     width: 300px;
-    margin: 20% auto;
-    padding: 100px;
+    margin: 0 auto;
+    padding: 20px;
     border: 1px solid #ceb9b9;
     border-radius: 10px;
     text-align: center;
     background-color: palegreen;
 }
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="text"]{
     width: 90%;
     padding: 10px;
     margin-bottom: 10px;
