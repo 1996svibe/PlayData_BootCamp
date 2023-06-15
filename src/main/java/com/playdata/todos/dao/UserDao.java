@@ -13,7 +13,7 @@ import java.util.List;
 public class UserDao {
     public void insert(User user){
         Connection conn = new JdbcConnection().getJdbc();
-        String sql = "insert into users(username, password, name)" +
+        String sql = "insert into users(username, password, name) " +
                 "values(?, ?, ?)";
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
