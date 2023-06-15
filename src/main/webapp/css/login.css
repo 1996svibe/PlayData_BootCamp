@@ -1,3 +1,35 @@
-input{
-    width: 150px;
+body{
+    background-color:cornflowerblue;
+}
+
+.container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ceb9b9;
+    border-radius: 10px;
+    text-align: center;
+    background-color: palegreen;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+input[type="id"],
+input[type="password"],
+input[type="text"]{
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid aquamarine;
+    border-radius: 5px;
+}
+input[type="submit"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid aquamarine;
+    border-radius: 5px;
+    cursor: pointer;
 }
