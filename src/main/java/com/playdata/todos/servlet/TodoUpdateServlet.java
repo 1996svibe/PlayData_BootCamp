@@ -8,17 +8,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class TodoInsertServlet extends HttpServlet {
+public class TodoUpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/views/todos.jsp").forward(req,resp);
+        req.setAttribute("todoid", req.getParameter("todoid"));
+        int id = Integer.parseInt(req.getParameter("todoid"));
+        String content = new TodoDao().findById(id).getContent();
+        req.setAttribute("content", content);
+        req.getRequestDispatcher("/views/todoupdate.jsp").forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String content = req.getParameter("content");
         int uid = (Integer) req.getSession().getAttribute("uid");
-        new TodoDao().insert(uid, content);
-        resp.sendRedirect("/main?keyword="+content);
+        int id = Integer.parseInt(req.getParameter("id"));
+        String content = req.getParameter("content");
+        new TodoDao().update(id, uid, content);
+        resp.sendRedirect("/main");
+
     }
 }

@@ -5,20 +5,9 @@ public class Todo {
     private String content;
     private String createAt;
     private boolean checked;
-    //전체 생성자, getter
 
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-    public Todo(Integer id,  String content, String createAt, Boolean checked){
-        this.id = id;
-        this.content = content;
-        this.createAt = createAt;
-        this.checked = checked;
-    }
-
+    // 전체 생성자, getter
     public Integer getId() {
         return id;
     }
@@ -33,5 +22,12 @@ public class Todo {
 
     public boolean isChecked() {
         return checked;
+    }
+
+    public Todo(Integer id, String content, String createAt, boolean checked) {
+        this.id = id;
+        this.content = content;
+        this.createAt = createAt;
+        this.checked = checked;
     }
 }

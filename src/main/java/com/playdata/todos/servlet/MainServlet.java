@@ -1,7 +1,9 @@
 package com.playdata.todos.servlet;
 
 import com.playdata.todos.config.History;
+import com.playdata.todos.dao.TodoDao;
 import com.playdata.todos.dao.UserDao;
+import com.playdata.todos.dto.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -14,7 +16,12 @@ public class MainServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String uname = (String) session.getAttribute("uname");
         req.setAttribute("uname", uname);
-        req.getRequestDispatcher("views/main.jsp").forward(req, resp);
+
+        String keyword = req.getParameter("keyword");
+        if(keyword!=null && !keyword.equals("")){
+            req.setAttribute("todolist", new TodoDao().findByKeyword(keyword));
+        }else req.setAttribute("todolist", new TodoDao().findAll());
+        req.getRequestDispatcher("/views/main.jsp").forward(req, resp);
 //        History.setHistory(req, resp);
 //        Cookie[] cookies = req.getCookies();
 //        String uid = null;
@@ -24,6 +31,7 @@ public class MainServlet extends HttpServlet {
 //            if(c.getName().equals("uname")) uname = c.getValue();
 //        }
 //        HttpSession session = req.getSession();
+//        User byId = new UserDao().findById((Integer) session.getAttribute("uid"));
 //        if( session.getAttribute("uname") != null){
 //
 //            resp.setContentType("text/html;charset=UTF-8");
@@ -34,19 +42,22 @@ public class MainServlet extends HttpServlet {
 //                    "<head>\n" +
 //                    "    <meta charset=\"UTF-8\">\n" +
 //                    "    <title>main</title>\n" +
+//                    "<link rel=\"stylesheet\"\n" +
+//                    "          href=\"/css/login.css\">\n" +
 //                    "</head>\n" +
 //                    "<body>\n" +
-//                    "    <h1>"  + session.getAttribute("uname") + " 환영합니다.</h1>\n" +
+//                    "    <h1>"  + byId.getName() + " 환영합니다.</h1>\n" +
 ////                    "    <h1>" + UserDao.me.getCreateAt() + " 가입했습니다.</h1>\n" +
 //                    "    <img src=\"/img/ffsf.png\">\n" +
 //                    "   <a href=\"/back\">back</a>\n" +
-//                    "   <a href= \"userupdate\">user update</a>\n" +
+////                    "   <a href=\"/todos\">+</a>\n" +
+//                    "   <a href=\"/userupdate\">user udpate</a>\n" +
 //                    "</body>\n" +
 //                    "</html>");
 //            writer.close();
 //        }else{
 //            resp.sendRedirect("/login");
 //        }
-//
-        }
+
+    }
 }

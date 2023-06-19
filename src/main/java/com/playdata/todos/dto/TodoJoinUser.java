@@ -7,22 +7,6 @@ public class TodoJoinUser {
     private boolean checked;
     private String name;
     private Integer uid;
-    //전체 생성자, getter
-
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    public TodoJoinUser(String name, Integer uid, Integer id, String content, String createAt, Boolean checked){
-        this.name = name;
-        this.uid = uid;
-        this.id = id;
-        this.content = content;
-        this.createAt = createAt;
-        this.checked = checked;
-        }
 
     public String getName() {
         return name;
@@ -32,6 +16,16 @@ public class TodoJoinUser {
         return uid;
     }
 
+    public TodoJoinUser(Integer id, String content, String createAt, boolean checked, String name, Integer uid) {
+        this.id = id;
+        this.content = content;
+        this.createAt = createAt;
+        this.checked = checked;
+        this.name = name;
+        this.uid = uid;
+    }
+
+    // 전체 생성자, getter
     public Integer getId() {
         return id;
     }
@@ -47,4 +41,6 @@ public class TodoJoinUser {
     public boolean isChecked() {
         return checked;
     }
+
+
 }
