@@ -15,6 +15,7 @@ public class UserDao {
     private final JdbcTemplate jdbcTemplate;
 
     public UserDao(DataSource dataSource) {
+
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
     public User login(String id, String pw){
