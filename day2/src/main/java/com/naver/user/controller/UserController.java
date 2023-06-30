@@ -1,20 +1,24 @@
 package com.naver.user.controller;
-
-import com.naver.user.domain.dto.User;
+import com.naver.user.domain.dto.UserUpdate;
+import com.naver.user.domain.entity.User;
 import com.naver.user.domain.request.LoginRequest;
 import com.naver.user.domain.request.SignUpRequest;
+
+import com.naver.user.domain.request.UserUpdateRequest;
 import com.naver.user.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
     private final UserService userService;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -26,11 +30,10 @@ public class UserController {
     public String getSignup(){
         return "/user/signup";
     }
+
+
     @PostMapping("/login")
     public ModelAndView postLogin(
-//            , @RequestParam("id") String id
-//            , @RequestParam("pw") String pw
-//            , @RequestParam(value = "idSave", required = false) Boolean idSave
             @ModelAttribute LoginRequest request
             , ModelAndView mav
             , HttpSession session
@@ -38,8 +41,9 @@ public class UserController {
 //        if(idSave==null) idSave = false;
         User login = userService.login(request);
         if(login != null){
+//            mav.addObject()
             session.setAttribute("id", login.getId());
-            session.setAttribute("name", login.getName());
+            session.setAttribute("uname", login.getName());
             mav.setViewName("redirect:/main");
         }else {
             mav.setViewName("redirect:/user/login");
@@ -55,12 +59,34 @@ public class UserController {
             @ModelAttribute SignUpRequest request
             , ModelAndView mav
     ){
-        if(userService.signup(request)) {
+        if(userService.signup(request)){
             mav.setViewName("redirect:/user/login");
-        } else {
+        }else {
             mav.setViewName("redirect:/user/signup");
         }
         return mav;
     }
+    @GetMapping("/update")
+    public ModelAndView showUpdatePage(
+            ModelAndView mav
+    ){
+        mav.setViewName("/user/userupdate");
+        return mav;
+    }
+
+    @PostMapping("/update")
+    public ModelAndView updateData(
+            @ModelAttribute UserUpdateRequest request,
+            HttpSession session,
+            ModelAndView mav
+    ) {
+        Integer id = (Integer) session.getAttribute("id");
+        UserUpdate dto = request.toDto(id);
+        userService.update(dto);
+        mav.setViewName("redirect:/user/login");
+
+        return mav;
+    }
+
 
 }

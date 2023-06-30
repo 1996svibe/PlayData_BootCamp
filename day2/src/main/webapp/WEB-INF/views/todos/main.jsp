@@ -1,4 +1,3 @@
-<%@ page import="com.mysql.cj.x.protobuf.MysqlxDatatypes" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,14 +6,19 @@
     <title>main</title>
 </head>
 <body>
-<%@include file="header.jsp" %>
-<%--<%--%>
-<%--    if(session.getAttribute("uid")==null)--%>
-<%--        response.sendRedirect("/login");--%>
-<%--%>--%>
+
+<%@ include file="header.jsp" %>
+<%--    <%--%>
+<%--        if(session.getAttribute("uid")==null)--%>
+<%--            response.sendRedirect("/login");--%>
+<%--    %>--%>
+
 <img src="/img/ffsf.png">
-<h1><%=(MysqlxDatatypes.Scalar.String) request.getAttribute("uname")%> 환영합니다.</h1>
+
+
+<h1><%=(String) request.getAttribute("uname")%> 환영합니다.</h1>
 <h1>${uname} 환영합니다.</h1>
+<a href="user/update">회원정보변경</a>
 <%@ include file="todos.jsp"%>
 <%@ include file="todolist.jsp"%>
 <form method="get" action="/main">
