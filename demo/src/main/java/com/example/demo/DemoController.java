@@ -1,22 +1,80 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
 
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
-/* Todo: rest response body
-1. 바디를 리턴 하면 화면이 없다(클라이언트 0서버 구조)
-2. 무상태(stateless) 클라이언트 전에 요청을 기억하고 있지 않는다.
--> 누가 물어봐도 계속 물어봐도 대답을 해야한다.
-3. 대답을 계속 하니까 힘들어서 캐시를 사용한다.
-4. 계층화된 시스템 (시스템의 구성요소를 분리하여 독립적 관리: M -> C)
-5. 유니폼 인터페이스(80% 사용안함): 서버가 주축이 되어서 다음 페이지를 정해줘야한다.
-
- */
+@RequestMapping("users")
 public class DemoController {
-    @GetMapping("/aaa")
-    public String test() {
-        return "test";
+
+    List<User> userList = new ArrayList<>();
+
+    public DemoController() {
+        userList.add(new User("김수동", 29));
+        userList.add(new User("이세인", 25));
+        userList.add(new User("이태웅", 26));
+        userList.add(new User("정민균", 28));
     }
+
+    @GetMapping
+    public List<User> test() throws InterruptedException {
+        return userList;
+    }
+    @GetMapping("{name}")
+    public User findByName(@PathVariable("name") String name){
+        return userList
+                .stream()
+                .filter(u-> u.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void insert(@RequestBody User user){
+        // 만약 user 가 있을때는 200
+        // 없으면 201
+        User user1 = userList
+                .stream()
+                .filter(u -> u.getName().equals(user.getName()))
+                .findFirst()
+                .orElse(null);
+        if(user1 == null) {
+            userList.add(user);
+//            return ResponseEntity
+//                    .status(HttpStatus.CREATED)
+//                    .build();
+        }else{
+//            return ResponseEntity
+//                    .status(HttpStatus.OK)
+//                    .build();
+        }
+    }
+
+
+    @DeleteMapping("{name}")
+    public void delete(@PathVariable("name") String name){
+        userList = userList
+                .stream()
+                .filter(u-> !u.getName().equals(name))
+                .toList();
+    }
+    @PutMapping("{name}")
+    public void update(
+            @PathVariable("name") String name,
+            @RequestBody User user
+    ){
+        userList = userList
+                .stream()
+                .map(u->
+                        u.getName().equals(name) ? user : u)
+                .toList();
+    }
+
+
 }

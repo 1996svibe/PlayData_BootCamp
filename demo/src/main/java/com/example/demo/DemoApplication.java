@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.member.MemberRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -11,10 +12,8 @@ public class DemoApplication {
 
 		 ConfigurableApplicationContext run=SpringApplication.run(DemoApplication.class, args);
 		String[] beanDefinitionNames = run.getBeanDefinitionNames();
-		for (String b: beanDefinitionNames) {
-			System.out.println(b);
+		new MemberRequest("aa", 21);
 		}
 
 	}
 
-}
