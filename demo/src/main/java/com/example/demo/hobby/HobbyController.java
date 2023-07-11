@@ -1,14 +1,22 @@
 package com.example.demo.hobby;
 
+
+
+
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+
 
 @RestController
 @RequestMapping("/api/v1/hobbies")
+@RequiredArgsConstructor
 public class HobbyController {
-
-    public HobbyController(HobbyService hobbyService){
-
+    private final HobbyService service;
+    @PostMapping
+    public void save(@RequestBody HobbyRequest request){
+        service.save(request);
     }
+
 }

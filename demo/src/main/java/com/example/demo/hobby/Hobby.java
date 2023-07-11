@@ -17,7 +17,8 @@ public class Hobby {
     private Member member;
 
     public Hobby(Integer id, String name, Member member) {
-        this.id = Store.hobbyIndex++;
+        if(id == null) this.id = Store.hobbyIndex++;
+        else this.id = id;
         this.name = name;
         this.member = member;
     }
