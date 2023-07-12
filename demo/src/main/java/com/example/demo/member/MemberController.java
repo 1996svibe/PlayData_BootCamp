@@ -1,5 +1,6 @@
 package com.example.demo.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +12,9 @@ import static com.example.demo.store.Store.members;
 @RequestMapping("/api/v1/members")
 public class MemberController {
 
-
+    @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
-        members.add(new Member("김수동", 29));
-        members.add(new Member("이세인", 25));
-        members.add(new Member("이태웅", 26));
-        members.add(new Member("정민균", 28));
     }
 //    @Autowired
     private final MemberService memberService;
