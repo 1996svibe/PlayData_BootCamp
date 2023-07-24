@@ -1,5 +1,6 @@
 package com.example.demo.member.domain.entity;
 
+import com.example.demo.config.domain.entity.MemberLogin;
 import com.example.demo.todos.domain.entity.Todo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,4 +24,7 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Todo> todos;
+
+    @OneToMany(mappedBy = "member")
+    private List<MemberLogin> logins;
 }

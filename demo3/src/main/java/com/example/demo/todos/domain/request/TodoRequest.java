@@ -4,7 +4,10 @@ import com.example.demo.member.domain.entity.Member;
 import com.example.demo.todos.domain.entity.Todo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
+
 @Getter
+@Setter
 @AllArgsConstructor
 public class TodoRequest {
     private String title;
@@ -16,12 +19,14 @@ public class TodoRequest {
         Member member = Member.builder()
                 .id(memberId)
                 .build();
+
         return Todo.builder()
                 .content(content)
                 .title(title)
                 .member(member)
                 .likeCount(0)
-                .isDone(false).build();
+                .isDone(false)
+                .build();
 
     }
 }

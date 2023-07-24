@@ -2,6 +2,15 @@ package com.example.demo.config.repository;
 
 import com.example.demo.config.domain.entity.MemberLogin;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MemberLoginRepository extends JpaRepository<MemberLogin, Long> {
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface MemberLoginRepository
+        extends JpaRepository<MemberLogin, Long> {
+    Optional<MemberLogin> findFirstByMemberIdOrderByEndAtDesc(Long memberId);
 }
+
+

@@ -1,5 +1,7 @@
 package com.example.demo.member.domain.response;
 
-public record LoginResponse (Long id, String name, Integer age){
+import com.example.demo.member.domain.entity.Member;
 
+public record LoginResponse(
+        Long id, String name, Integer age, String token ) {
 }
