@@ -1,0 +1,10 @@
+
+g	java:S112."FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8˜ıú¸—1
+
+java:S11495"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(ŸÔÚçıÿÿÿÿ8ßıú¸—1
+:
+java:S21194"Save and re-use this "Random".(¼İÅf8¼İÿ¸—1
+H
+java:S1905;"&Remove this unnecessary cast to "int".(…Ğ»ëùÿÿÿÿ8¾İÿ¸—1
+C
+java:S1905<"&Remove this unnecessary cast to "int".(¨Ì³©8¿İÿ¸—1

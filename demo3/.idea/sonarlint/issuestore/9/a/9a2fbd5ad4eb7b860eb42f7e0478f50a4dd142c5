@@ -1,0 +1,10 @@
+
+
+java:S1488"_Immediately return this expression instead of assigning it to the temporary variable "compact".(—¼²Âûÿÿÿÿ8îÎ¶·—1
+ƒ
+java:S1488+"aImmediately return this expression instead of assigning it to the temporary variable "memberDto".(ßàÛ”ÿÿÿÿÿ8Á¸·—1
+x
+java:S14882"[Immediately return this expression instead of assigning it to the temporary variable "key".(÷ğìê8ïÎ¶·—1
+]	java:S125""<This block of commented-out lines of code should be removed.(Ğ“ìşşÿÿÿÿ8€Ï¶·—1
+`
+java:S5659&"CThe JWT signature (JWS) should be verified before using this token.(›¢ŠŞ8€Ï¶·—1

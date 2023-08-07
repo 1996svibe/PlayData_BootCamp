@@ -1,0 +1,12 @@
+
+y
+java:S2629"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¹®Æ›8Ñ«‹°—1
+y
+java:S2629"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¹®Æ›8Ò«‹°—1
+^
+java:S3457"AFormat specifiers should be used instead of string concatenation.(¹®Æ›8ä«‹°—1
+^
+java:S3457"AFormat specifiers should be used instead of string concatenation.(¹®Æ›8å«‹°—1
+X	java:S125"<This block of commented-out lines of code should be removed.(Š¼”¡8è«‹°—1
+]	java:S125("<This block of commented-out lines of code should be removed.(žîÇÜüÿÿÿÿ8è«‹°—1
+X	java:S1254"<This block of commented-out lines of code should be removed.(úÆàä8è«‹°—1
